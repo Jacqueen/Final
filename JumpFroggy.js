@@ -8,10 +8,10 @@ const backgroundImg = new Image();
 backgroundImg.src = "https://static3.scirra.net/images/newstore/products/1506/4.png";
 
 const heroImg = new Image();
-heroImg.src = "https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2016/03/Adventure-Boy-Featured-Game-Art.png";
+heroImg.src = "https://i.imgur.com/OH8UvKe.png";
 
 const jumpSound = new Audio();
-jumpSound.src = "";
+// jumpSound.src = "";
 // const snowballs = {
 	// x: Math.random() * canvas.width,
 	// y: Math.random() * canvas.height,
@@ -19,11 +19,11 @@ jumpSound.src = "";
 // };
 
 const hero = {
-	x:		canvas.width / 2,
+	x:		canvas.width / 2 - 50,
 	y:		canvas.height - 100,
 	image:	heroImg,
-	width:	200,
-	height:	200,
+	width:	100,
+	height:	100,
 	yDelta:	0,
 }
 
@@ -33,7 +33,7 @@ const chooseX = rectX[index];
 
 const rect = {
 	x: 		chooseX,
-	y:		canvas.height - 30,
+	y:		canvas.height - 50,
 	width:	130,
 	height:	15,
 	xd: 	5,
@@ -44,8 +44,8 @@ const draw = function()
 	ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
 	ctx.drawImage(hero.image, hero.x, hero.y, hero.width, hero.height);
 	ctx.clearRect(rect.x, rect.y, rect.width, rect.height);
-		ctx.fillStyle = "yellow";
-		ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+	ctx.fillStyle = "yellow";
+	ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
 };
 
 const maxJump = canvas.height - hero.y / 2;
@@ -82,29 +82,12 @@ const updateGame = function()
 		//collision
 		
 		if(hero.y + hero.height > rect.y) {
-		rect.x = rect.x + 0;
+		rect.xd = 0;
 	}
-	else if(hero.x < rect.x + rect.width && hero.x + hero.width > rect.x) {
-		
+	else if(hero.x < rect.x + rect.width && hero.x + hero.width > rect.x && hero.y < rect.y + rect.height && hero.y + hero.height > rect.y) {
+		rect.xd = -rect.xd;
 	}
 };
-
-// const update = funcion() {
-		
-	// if(index === 0) {
-		// rect.x += rect.xd;
-		// if(rect.x > canvas.width / 2){
-		// rect.x = canvas.width / 2;
-	// }
-		// }
-		// else if(index === 1) {
-			// rect.x += -rect.xd;
-			// if(rect.x < canvas.width / 2){
-		// rect.x = canvas.width / 2;
-	// }
-		// }
-		// rect.y += 10;
-// }
 
 const loop = function() 
 {
