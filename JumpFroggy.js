@@ -20,10 +20,10 @@ jumpSound.src = "";
 
 const hero = {
 	x:		canvas.width / 2,
-	y:		canvas.height - 500,
+	y:		canvas.height - 100,
 	image:	heroImg,
-	width:	500,
-	height:	500,
+	width:	200,
+	height:	200,
 	yDelta:	0,
 }
 
@@ -33,10 +33,10 @@ const chooseX = rectX[index];
 
 const rect = {
 	x: 		chooseX,
-	y:		canvas.height - 100,
-	width:	400,
-	height:	50,
-	xd: 	10,
+	y:		canvas.height - 30,
+	width:	130,
+	height:	15,
+	xd: 	5,
 }
 
 const draw = function()
@@ -82,18 +82,36 @@ const updateGame = function()
 		//collision
 		
 		if(hero.y + hero.height > rect.y) {
-		alert("hi");
+		rect.x = rect.x + 0;
 	}
 	else if(hero.x < rect.x + rect.width && hero.x + hero.width > rect.x) {
 		
 	}
 };
 
+// const update = funcion() {
+		
+	// if(index === 0) {
+		// rect.x += rect.xd;
+		// if(rect.x > canvas.width / 2){
+		// rect.x = canvas.width / 2;
+	// }
+		// }
+		// else if(index === 1) {
+			// rect.x += -rect.xd;
+			// if(rect.x < canvas.width / 2){
+		// rect.x = canvas.width / 2;
+	// }
+		// }
+		// rect.y += 10;
+// }
+
 const loop = function() 
 {
 	requestAnimationFrame(loop);
 	draw();
 	updateGame();
+	// update();
 };
 
 loop();
@@ -103,8 +121,8 @@ const upKey = 38;
 document.addEventListener("keydown", function(event){
 		if(event.keyCode === upKey)
 		{
-			if(hero.yDelta === 0) {
-			hero.yDelta = 10;
+			if(hero.yDelta <= 0) {
+			hero.yDelta = 3;
 		}
 	}
 }, false);
